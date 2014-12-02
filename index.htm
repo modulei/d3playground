@@ -1,0 +1,75 @@
+<!--  Leila Gingis
+      From http://alignedleft.com/tutorials/d3
+      December 2014
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title> d3 test site </title>
+		<script type="text/javascript" src="d3/d3.v3.js"> </script>
+		<style type="text/css"></style>
+		<style type="text/css"> 
+		
+			div.bar {
+				display: inline-block;
+				width: 20px;
+				height: 75px;
+				background-color: teal;
+				margin-right: 2px;
+			}
+			
+			.pumpkin {
+				fill: yellow;
+				stroke: orange;
+				stroke-width: 5;
+			}
+		
+		
+		</style>
+	</head>
+	<body>
+		<script type="text/javascript">
+		
+			var dataset = [];										// Initialize an empty array
+			for (var i = 0; i <25; i++) {							// Loop 25 times
+				var newNumber = Math.round(Math.random() * 30);		// New random number (0-30)
+				dataset.push(newNumber);							//Add new number to array
+			}
+			
+			d3.select("body").selectAll("div")
+				.data(dataset)
+				.enter()
+				.append("div")
+				.attr("class", "bar")
+				.style("height", function(d) {
+					var barHeight = d * 5 							 // Scale up by a factor of 5
+					return barHeight + "px";
+
+				});
+				
+				/*
+				.append("p")
+				.text(function(d) { return "I can count up to " + d; })
+				.style("color", function(d) {
+					if (d % 2 == 0){
+						return "red";
+					} else {
+						return "black";
+					}
+				
+					
+				});
+				*/
+				
+		</script>
+		<svg width="500" height="5000">
+			<rect x="0" y="0" width="500" height="50"/>
+			<circle cx="250" cy="100" r="25" class="pumpkin"/>
+			<ellipse cx="250" cy="200" rx="100" ry="25"/>
+			<line x1="0" y1="200" x2="500" y2="50" stroke="red"/>
+			<text x="175" y="210" font-family="sans-serif" font-size="25" fill="gray">Easy-peasy</text>
+		</svg>
+	</body>
+</html>
